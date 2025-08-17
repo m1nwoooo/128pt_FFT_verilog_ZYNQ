@@ -32,10 +32,6 @@ FPGA 구현: 합성(Synthesis), 구현(Implementation), 비트스트림(Bitstrea
 
 ## 📝 세부 설계 내용
 
-알고리즘: Radix-2 Decimation-In-Time (DIT) 알고리즘을 기반으로 128-Point FFT를 구현했습니다.
-
-구조: Butterfly 연산 유닛: FFT의 핵심 연산인 Butterfly 연산을 수행하는 모듈을 설계했습니다.
-
 1. Verilog 기반 FFT 모듈 아키텍처
 FFT 가속기는 파이프라인(Pipelined) 구조를 기반으로 한 Radix-2 DIT(Decimation-In-Time) 알고리즘을 사용하여 128-Point 연산을 수행합니다. 전체 아키텍처는 데이터의 연속적인 처리를 위해 각 연산 단계가 모듈화되어 있으며, 중앙 컨트롤러에 의해 동기화됩니다.
 

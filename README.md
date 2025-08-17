@@ -68,11 +68,7 @@ Radix-2 FFT 알고리즘의 특성상 연산 결과는 비트-역순(Bit-Reverse
 
 두 개의 memory bank (Ping-Pong Buffer)를 사용하여, 한쪽 bank에는 순서가 섞인 FFT 결과가 계속해서 입력되는 동안 다른 쪽 bank에서는 이미 정렬이 완료된 데이터를 읽어갈 수 있도록 하여 파이프라인이 멈추지 않도록 합니다.
 
-2. AXI-Lite IP 블록 생성
-설계된 FFT 모듈을 Zynq의 ARM 프로세서와 연결하기 위해 AXI4-Lite 슬레이브 인터페이스를 추가하여 IP로 패키징했습니다.
-
-
-4. Zynq 시스템 통합
+## 💻 Zynq 시스템 통합
 Vivado의 Block Design 기능을 사용하여 다음과 같이 전체 시스템을 구성했습니다.
 
 <img width="1366" height="691" alt="image" src="https://github.com/user-attachments/assets/dad199c7-fe24-492e-901e-65681ccb9ac8" />
@@ -88,7 +84,7 @@ Block Design 검증 후 HDL Wrapper 생성 및 Bitstream 생성
 
 
 
-4. C 언어를 이용한 제어 소프트웨어
+## 🧠 C 언어를 이용한 제어 소프트웨어
 Vitis(SDK) 환경에서 ARM Cortex-A9 프로세서용 제어 프로그램을 작성했습니다.
 
 주요 기능:
@@ -104,14 +100,3 @@ Vitis(SDK) 환경에서 ARM Cortex-A9 프로세서용 제어 프로그램을 작
 결과 읽기: 연산이 완료되면 FFT IP의 출력 RAM에서 128개의 결과 데이터를 읽어와 C 변수에 저장합니다.
 
 결과 출력: 읽어온 FFT 결과값을 UART 터미널을 통해 출력하여 확인합니다.
-
-✅ 검증 및 결과
-시뮬레이션: Verilog 테스트벤치를 작성하여 RTL 수준에서 FFT 모듈의 기능적 정확성을 검증했습니다.
-
-FPGA 보드 검증:
-
-생성된 비트스트림을 Zybo Z7-20 보드에 다운로드했습니다.
-
-Vitis에서 작성한 C 코드를 보드의 ARM 프로세서에서 실행했습니다.
-
-입력 데이터로 주입한 신호가 FFT 연산을 통해 주파수 영역으로 올바르게 변환되는 것을 UART 출력으로 확인했습니다. 소프트웨어로 계산한 FFT 결과와 하드웨어 가속기의 결과가 일치함을 통해 기능적 정확성을 최종 검증했습니다.

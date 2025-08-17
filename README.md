@@ -31,7 +31,7 @@ FPGA 구현: 합성(Synthesis), 구현(Implementation), 비트스트림(Bitstrea
 하드웨어/소프트웨어 검증: 실제 FPGA 보드에서 소프트웨어를 실행하여 FFT 하드웨어 가속기의 기능과 성능을 최종 검증합니다.
 
 ## 📝 세부 설계 내용
-1. Verilog 기반 FFT 모듈 설계
+
 알고리즘: Radix-2 Decimation-In-Time (DIT) 알고리즘을 기반으로 128-Point FFT를 구현했습니다.
 
 구조: Butterfly 연산 유닛: FFT의 핵심 연산인 Butterfly 연산을 수행하는 모듈을 설계했습니다.

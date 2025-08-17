@@ -4,7 +4,7 @@ Designed and implemented 128-point FFT hardware module in Verilog, and verified 
 ■ 저작권 문제로 직접 작성한 일부 코드만 업로드하였습니다.
 
 ## 🚀 프로젝트 개요
-본 프로젝트는 디지털 신호 처리의 핵심 연산인 128-Point FFT 을 Verilog HDL을 이용하여 하드웨어(Single-Path Delay Feedback)로 설계하고, 이를 Xilinx Zynq-7000 FPGA 플랫폼에 구현하여 검증하는 것을 목표로 합니다.
+본 프로젝트는 디지털 신호 처리의 핵심 연산인 128-Point FFT 을 Verilog HDL을 이용하여 하드웨어(Single-Path Delay Feedback)로 설계하고, 이를 Xilinx Zynq-7000 FPGA 플랫폼에 구현하여 검증하는 것을 목표로 합니다. (아래는 8pt FFT SDF HW 예시)
 
 <img width="1499" height="439" alt="image" src="https://github.com/user-attachments/assets/b3493a53-0980-450a-bff6-1c3ee2ad3515" />
 

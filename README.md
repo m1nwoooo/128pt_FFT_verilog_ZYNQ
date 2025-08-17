@@ -4,9 +4,12 @@ Designed and implemented 128-point FFT hardware module in Verilog, and verified 
 ■ 저작권 문제로 직접 작성한 일부 코드만 업로드하였습니다.
 
 ## 🚀 프로젝트 개요
-본 프로젝트는 디지털 신호 처리의 핵심 연산인 128-Point FFT을 Verilog HDL을 이용하여 하드웨어로 설계하고, 이를 Xilinx Zynq-7000 FPGA 플랫폼에 구현하여 검증하는 것을 목표로 합니다.
+본 프로젝트는 디지털 신호 처리의 핵심 연산인 128-Point FFT 을 Verilog HDL을 이용하여 하드웨어(Single-Path Delay Feedback)로 설계하고, 이를 Xilinx Zynq-7000 FPGA 플랫폼에 구현하여 검증하는 것을 목표로 합니다.
 
-설계된 FFT 하드웨어 모듈은 Vivado에서 AXI-Lite 인터페이스를 갖는 IP 블록으로 패키징되어 Zynq Processing System(PS)에 통합됩니다. ARM 프로세서에서 실행되는 C 코드는 이 IP 블록을 제어하여 FFT 연산을 수행하고, 하드웨어 가속을 통한 FFT가 가능함을 보입니다.
+<img width="1499" height="439" alt="image" src="https://github.com/user-attachments/assets/b3493a53-0980-450a-bff6-1c3ee2ad3515" />
+
+
+설계된 FFT SDF 모듈은 Vivado에서 AXI-Lite 인터페이스를 갖는 IP 블록으로 패키징되어 Zynq Processing System(PS)에 통합됩니다. ARM 프로세서에서 실행되는 C 코드는 이 IP 블록을 제어하여 FFT 연산을 수행하고, 하드웨어 가속을 통한 FFT가 가능함을 보입니다.
 
 ## 🛠️ 개발 환경
 하드웨어: Xilinx Zynq-7000 SoC 
@@ -42,17 +45,17 @@ AXI4-Lite 슬레이브 프로토콜을 구현하여, ARM 프로세서가 메모�
 
 FFT 연산의 모든 과정을 총괄하는 FSM(Finite State Machine) 기반의 컨트롤러입니다.
 
-128개의 데이터 샘플이 파이프라인을 따라 흐르는 동안, 각 클럭 사이클마다 필요한 제어 신호를 생성하여 모든 stage 모듈에 전달합니다.
+128개의 data sample이 파이프라인을 따라 흐르는 동안, 각 클럭 사이클마다 필요한 제어 신호를 생성하여 모든 stage 모듈에 전달합니다.
 
 sel_bf: 각 스테이지에서 Butterfly 연산을 수행할지 여부를 결정합니다.
 
-sel_w: 각 스테이지의 복소수 곱셈에 필요한 Twiddle Factor를 ROM에서 선택하는 주소 신호입니다.
+sel_w: 각 스테이지의 연산에 필요한 Twiddle Factor를 ROM에서 선택하는 address 신호입니다.
 
-en_reg_out_bus: 최종 출력 순서를 맞추기 위한 reordering_module의 메모리 뱅크를 제어합니다.
+en_reg_out_bus: 최종 출력 순서를 맞추기 위한 reordering_module의 memory bank를 제어합니다.
 
 ### stage.v (FFT 연산 스테이지)
 
-128-Point FFT는 총 7개의 연산 스테이지로 구성되며, 이 모듈은 각 스테이지의 연산을 담당합니다.
+128-Point FFT는 총 7개의 연산 stage로 구성되며, 이 모듈은 각 스테이지의 연산을 담당합니다.
 
 내부적으로 Butterfly 연산, Twiddle Factor 곱셈, 데이터 지연을 위한 모듈들로 구성됩니다.
 
@@ -64,7 +67,7 @@ shift_reg.v (시프트 레지스터): 파이프라인 구조에서 데이터 정
 
 ### reordering_module.v (출력 재정렬 모듈)
 
-Radix-2 FFT 알고리즘의 특성상 연산 결과는 비트-역순(Bit-Reversed Order)으로 출력됩니다. 이 모듈은 뒤섞인 순서의 데이터를 자연스러운 순서(Natural Order)로 재정렬합니다.
+Radix-2 FFT 알고리즘의 특성상 연산 결과는 비트-역순(Bit-Reversed Order)으로 출력됩니다. 이 모듈은 뒤섞인 순서의 데이터를 적절한 순서로 re-ordering합니다.
 
 두 개의 memory bank (Ping-Pong Buffer)를 사용하여, 한쪽 bank에는 순서가 섞인 FFT 결과가 계속해서 입력되는 동안 다른 쪽 bank에서는 이미 정렬이 완료된 데이터를 읽어갈 수 있도록 하여 파이프라인이 멈추지 않도록 합니다.
 

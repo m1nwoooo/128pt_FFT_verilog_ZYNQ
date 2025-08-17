@@ -30,7 +30,6 @@ Designed and implemented 128-point FFT hardware module in Verilog, and verified 
 
 ## 📝 세부 설계 내용
 
-1. Verilog 기반 FFT 모듈 아키텍처
 FFT 가속기는 파이프라인(Pipelined) 구조를 기반으로 한 Radix-2 DIT(Decimation-In-Time) 알고리즘을 사용하여 128-Point 연산을 수행합니다. 전체 아키텍처는 데이터의 연속적인 처리를 위해 각 연산 단계가 모듈화되어 있으며, 중앙 컨트롤러에 의해 동기화됩니다.
 
 ### axi_slave_FFT_f_ps.v (AXI 탑 모듈)

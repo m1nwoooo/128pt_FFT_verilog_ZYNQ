@@ -1,5 +1,6 @@
-<img width="1366" height="691" alt="image" src="https://github.com/user-attachments/assets/e3659350-6203-43af-a3f9-88a8a4d6d718" /># 128pt_FFT_verilog_ZYNQ
+# 128pt_FFT_verilog_ZYNQ
 Designed and implemented 128-point FFT hardware module in Verilog, and verified its  functionality on a Xilinx Zynq-7000 FPGA platform
+
 ■ 저작권 문제로 직접 작성한 일부 코드만 업로드하였습니다.
 
 ## 🚀 프로젝트 개요

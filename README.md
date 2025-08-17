@@ -4,9 +4,9 @@ Designed and implemented 128-point FFT hardware module in Verilog, and verified 
 ■ 저작권 문제로 직접 작성한 일부 코드만 업로드하였습니다.
 
 ## 🚀 프로젝트 개요
-본 프로젝트는 디지털 신호 처리의 핵심 연산인 128-Point 고속 푸리에 변환(FFT)을 Verilog HDL을 이용하여 하드웨어로 설계하고, 이를 Xilinx Zynq-7000 FPGA 플랫폼에 구현하여 검증하는 것을 목표로 합니다.
+본 프로젝트는 디지털 신호 처리의 핵심 연산인 128-Point FFT을 Verilog HDL을 이용하여 하드웨어로 설계하고, 이를 Xilinx Zynq-7000 FPGA 플랫폼에 구현하여 검증하는 것을 목표로 합니다.
 
-설계된 FFT 하드웨어 모듈은 Vivado에서 AXI-Lite 인터페이스를 갖는 IP 블록으로 패키징되어 Zynq Processing System(PS)에 통합됩니다. ARM 프로세서에서 실행되는 C 코드는 이 IP 블록을 제어하여 FFT 연산을 수행하고, 하드웨어 가속을 통해 고속의 신호 처리가 가능함을 보입니다.
+설계된 FFT 하드웨어 모듈은 Vivado에서 AXI-Lite 인터페이스를 갖는 IP 블록으로 패키징되어 Zynq Processing System(PS)에 통합됩니다. ARM 프로세서에서 실행되는 C 코드는 이 IP 블록을 제어하여 FFT 연산을 수행하고, 하드웨어 가속을 통한 FFT가 가능함을 보입니다.
 
 ## 🛠️ 개발 환경
 하드웨어: Xilinx Zynq-7000 SoC 

@@ -18,17 +18,15 @@ Designed and implemented 128-point FFT hardware module in Verilog, and verified 
 ##  📂 프로젝트 구조 및 흐름
 프로젝트는 다음과 같은 단계로 진행되었습니다.
 
-Verilog RTL 설계: 128-Point FFT 연산을 수행하는 하드웨어 모듈을 Verilog로 설계합니다.
+1. Verilog RTL 설계: 128-Point FFT 연산을 수행하는 하드웨어 모듈을 Verilog로 설계합니다.
 
-IP 패키징: 설계된 Verilog 모듈을 Vivado의 IP Packager를 사용하여 AXI-Lite 인터페이스를 갖는 IP 블록으로 제작합니다.
+2. IP 패키징: 설계된 Verilog 모듈을 Vivado의 IP Packager를 사용하여 AXI-Lite 인터페이스를 갖는 IP 블록으로 제작합니다.
 
-하드웨어 시스템 통합: Vivado Block Design을 통해 Zynq7 Processing System과 FFT IP를 연결하여 전체 하드웨어 시스템을 구축합니다.
+3. 하드웨어 시스템 통합: Vivado Block Design을 통해 Zynq7 Processing System과 FFT IP를 연결하여 전체 하드웨어 시스템을 구축합니다.
 
-FPGA 구현: 합성(Synthesis), 구현(Implementation), 비트스트림(Bitstream) 생성을 통해 하드웨어 설계를 FPGA에 프로그래밍할 준비를 합니다.
+4. FPGA 구현: 합성(Synthesis), 구현(Implementation), 비트스트림(Bitstream) 생성을 통해 하드웨어 설계를 FPGA에 프로그래밍할 준비를 합니다.
 
-소프트웨어 개발: Vitis(SDK)에서 C 코드를 작성하여 ARM 프로세서가 AXI 버스를 통해 FFT IP를 제어하고 데이터를 주고받도록 합니다.
-
-하드웨어/소프트웨어 검증: 실제 FPGA 보드에서 소프트웨어를 실행하여 FFT 하드웨어 가속기의 기능과 성능을 최종 검증합니다.
+5. 검증: SDK에서 C 코드를 작성하여 ARM 프로세서가 AXI 버스를 통해 FFT IP를 제어하고 데이터를 주고받으며 128 point FFT를 검증합니다.
 
 ## 📝 세부 설계 내용
 
